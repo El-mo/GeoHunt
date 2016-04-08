@@ -34,13 +34,13 @@ public class ListViewAdapter extends ArrayAdapter<Geocache>{
         TextView detail = (TextView) convertView.findViewById(R.id.tv_detail);
 
         String detailStr = item.getDescription();
-        if(detailStr.length() > 20){
-            detailStr = detailStr.substring(0, 20) + "...";
+        if(detailStr.length() > 30){
+            detailStr = detailStr.substring(0, 30) + "...";
         }
 
         title.setText(item.getTitle());
         dateTime.setText(item.getDateString());
-        detail.setText(item.getDescription());
+        detail.setText(detailStr);
 
 
         return convertView;

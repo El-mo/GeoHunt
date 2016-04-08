@@ -18,32 +18,6 @@ public class AlertHelper {
         alertCallBack = callBack;
     }
 
-    public void makeAlertWithNumberInput(final String Title){
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle(Title);
-
-        // Set up the input
-        final EditText input = new EditText(mContext);
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_NUMBER);
-        builder.setView(input);
-
-        // Set up the buttons
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                alertCallBack.alertHelperTextResponse(Title, input.getText().toString());
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                alertCallBack.alertHelperTextResponse(Title, "Cancel");
-                dialog.cancel();
-            }
-        });
-        builder.show();
-    }
-
     public void makeAlertWithTextInput(final String Title){
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle(Title);

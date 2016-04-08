@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,6 +32,8 @@ public class CommentListAdapter extends ArrayAdapter<Comment>{
         TextView title = (TextView) convertView.findViewById(R.id.tv_title);
         TextView dateTime = (TextView) convertView.findViewById(R.id.tv_date_time);
         TextView detail = (TextView) convertView.findViewById(R.id.tv_detail);
+        ImageView thumb = (ImageView) convertView.findViewById(R.id.list_thumb);
+        thumb.setImageResource(R.drawable.commentthumb);
 
         title.setText(comment.getName());
         dateTime.setText(comment.getDateString());

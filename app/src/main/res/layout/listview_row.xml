@@ -7,7 +7,9 @@
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:id="@+id/list_thumb" />
+        android:id="@+id/list_thumb"
+        android:src="@drawable/thumb"
+        android:layout_marginRight="5dp" />
 
     <LinearLayout
         android:orientation="vertical"

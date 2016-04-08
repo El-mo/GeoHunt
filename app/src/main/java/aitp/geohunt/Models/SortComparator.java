@@ -15,7 +15,6 @@ public class SortComparator implements Comparator<Geocache> {
         this.arg = "date";
     }
 
-    //TODO Add Sort Options to Comparator
     @Override
     public int compare(Geocache event, Geocache t1) {
         switch (arg){
