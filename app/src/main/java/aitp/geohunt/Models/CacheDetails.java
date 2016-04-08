@@ -4,7 +4,7 @@ package aitp.geohunt.Models;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ObjectDetails implements Serializable {
+public class CacheDetails implements Serializable {
     boolean favorite;
     float rating;
     String notes;

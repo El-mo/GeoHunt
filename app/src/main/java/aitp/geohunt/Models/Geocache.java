@@ -20,6 +20,7 @@ public class Geocache implements Serializable {
     Date date = new Date();
     LocationHelper location;
     float distanceTo = -1;
+    CacheDetails cacheDetails = new CacheDetails();
 
     ArrayList<ImageHelper> images = new ArrayList<>();
 
@@ -73,6 +74,14 @@ public class Geocache implements Serializable {
     }
     public void setImages(ArrayList<ImageHelper> images) {
         this.images = images;
+    }
+
+    public CacheDetails getCacheDetails() {
+        return cacheDetails;
+    }
+
+    public void setCacheDetails(CacheDetails cacheDetails) {
+        this.cacheDetails = cacheDetails;
     }
 
     @Override
