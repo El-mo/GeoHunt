@@ -96,7 +96,12 @@ public class Geocache implements Serializable {
         return cacheDetails.isFavorite();
     }
 
-
+    public double getLatitude(){
+        return location.getLatitude();
+    }
+    public double getLongitude(){
+        return location.getLongitude();
+    }
 
     @Override
     public boolean equals(Object obj) {

@@ -174,6 +174,8 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
                 return true;
             case R.id.launchmap:
                 //TODO add map
+                Intent i = new Intent(this, ViewLocationsActivity.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
