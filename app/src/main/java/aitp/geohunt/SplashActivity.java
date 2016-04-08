@@ -39,6 +39,19 @@ public class SplashActivity extends AppCompatActivity {
         geocache1.setLocation(Float.parseFloat("-87.629798") , Float.parseFloat("41.878114"), this);
         geocaches.add(geocache1);
 
+        geocache1 = new Geocache();
+        geocache1.setTitle("This is tricky");
+        geocache1.setDescription("Hard, but totally worth it");
+        geocache1.setType("Funky Object");
+
+        details = new CacheDetails();
+        comments = new ArrayList<>();
+        comments.add(new Comment("Marshal", "I don't expect you to find this easily"));
+        details.setComments(comments);
+        geocache1.setCacheDetails(details);
+        geocache1.setLocation(Float.parseFloat("-87.129798") , Float.parseFloat("41.178114"), this);
+        geocaches.add(geocache1);
+
 
 
 

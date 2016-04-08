@@ -92,6 +92,10 @@ public class Geocache implements Serializable {
         this.cacheDetails = cacheDetails;
     }
 
+    public boolean isFavorite(){
+        return cacheDetails.isFavorite();
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Geocache))

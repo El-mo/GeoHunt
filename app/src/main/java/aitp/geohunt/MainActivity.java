@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //load list of caches
+        list = InternalStorage.readGeocacheList(this);
+
         //set SortOptions
         sortOptions.add("Date");
         sortOptions.add("Title");
@@ -59,7 +62,11 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
         //set filterOptions
         filterOptions.add("None");
         filterOptions.add("Favorites");
-        filterOptions.add("Type");
+        //filterOptions.add("Type");
+        for(Geocache item : list){
+            if(!filterOptions.contains(item.getType()))
+                filterOptions.add(item.getType());
+        }
 
         retrieveUserData();
         setUpList();
@@ -173,12 +180,6 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Filter By:");
 
-        //TODO Add filter by options
-        /*
-            for(Geocache item: list){
-                filterOptions.add(item.getType());
-            }
-         */
         String[] types =  new String[filterOptions.size()];
         types = filterOptions.toArray(types);
 
@@ -202,23 +203,21 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
                 //noinspection ConstantConditions
                 getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
                 break;
-            /*case "Favorites":
+            case "Favorites":
                 for (Geocache item : this.list) {
                     if (item.isFavorite())
                         display.add(item);
                 }
                 //noinspection ConstantConditions
                 getSupportActionBar().setTitle("My Favorites");
-                break;*/
+                break;
             default:
-                /*
+
                 for (Geocache item : this.list) {
                     if (item.getType().equals(filterStr))
                         display.add(item);
                 }
-                //noinspection ConstantConditions
                 getSupportActionBar().setTitle(filterStr);
-                */
                 break;
         }
         setUpList();
