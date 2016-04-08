@@ -8,6 +8,8 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 import aitp.geohunt.DataLayer.InternalStorage;
+import aitp.geohunt.Models.CacheDetails;
+import aitp.geohunt.Models.Comment;
 import aitp.geohunt.Models.Geocache;
 
 public class SplashActivity extends AppCompatActivity {
@@ -23,10 +25,17 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public void createData(){
-        //geocaches = InternalStorage.readGeocacheList(this);
         geocaches = new ArrayList<>();
         Geocache geocache1 = new Geocache();
         geocache1.setTitle("Location 1");
+        geocache1.setType("Toy");
+
+        CacheDetails details = new CacheDetails();
+        ArrayList<Comment> comments = new ArrayList<>();
+        comments.add(new Comment("John Smith", "See if you can find what I hid!"));
+        details.setComments(comments);
+        geocache1.setCacheDetails(details);
+        geocache1.setLocation(Float.parseFloat("-87.629798") , Float.parseFloat("41.878114"), this);
         geocaches.add(geocache1);
 
 

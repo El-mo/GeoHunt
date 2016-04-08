@@ -1,10 +1,11 @@
 package aitp.geohunt.Models;
 
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class Comment {
+public class Comment implements Serializable{
 
     public String name, comment;
     public Date commentDate = new Date();
