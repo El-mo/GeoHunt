@@ -9,6 +9,11 @@ public class Comment {
     public String name, comment;
     public Date commentDate = new Date();
 
+    public Comment(String name, String comment) {
+        this.name = name;
+        this.comment = comment;
+    }
+
     public String getDateString(){
         return DateFormat.getDateTimeInstance().format(commentDate.getTime());
     }

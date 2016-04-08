@@ -89,7 +89,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="See Comments"
-            android:id="@+id/commentsbutton" />
+            android:id="@+id/commentsbutton"
+            android:onClick="seeComments" />
     </LinearLayout>
 
 </LinearLayout>

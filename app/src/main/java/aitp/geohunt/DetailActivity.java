@@ -9,9 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,10 +28,7 @@ public class DetailActivity extends AppCompatActivity {
     Geocache item;
     EditText etTitle, etDesc;
     TextView tvAddress;
-    Button buEditSave;
-    boolean formEnabled = false;
     ImageHelper imageFromCam;
-    ListView commentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +50,7 @@ public class DetailActivity extends AppCompatActivity {
         etTitle = (EditText) findViewById(R.id.edit_et_title);
         etDesc = (EditText) findViewById(R.id.edit_et_desc);
         tvAddress = (TextView) findViewById(R.id.edit_tv_address);
-        commentList = (ListView) findViewById(R.id.comment_list);
+
 
         etTitle.setText(item.getTitle());
         etDesc.setText(item.getDescription());
@@ -79,29 +74,12 @@ public class DetailActivity extends AppCompatActivity {
         item.setDescription(etDesc.getText().toString());
     }
 
-    public void toggleForm(){
-        if(formEnabled) {
-            getFromForm();
-            InternalStorage.setGeoCacheItem(this, index, item);
-            //saveItemToStorage();
-            buEditSave.setText("Save");
-        }else {
-            buEditSave.setText("Edit");
-        }
-        formEnabled = !formEnabled;
-        etDesc.setEnabled(formEnabled);
-        etTitle.setEnabled(formEnabled);
-    }
 
     // BUTTON OnClicks
-    public void editSaveButton(View view){
-        toggleForm();
-        /*
-        if(formEnabled)
-            saveItemToStorage();
-        formEnabled = !formEnabled;
-        toggleForm(formEnabled);
-        */
+    public void seeComments(View view){
+        Intent i = new Intent(DetailActivity.this, CommentDisplayActivity.class);
+        i.putExtra(MainActivity.LISTINDEX, index);
+        startActivity(i);
     }
 
     public void seePictures(View view){
