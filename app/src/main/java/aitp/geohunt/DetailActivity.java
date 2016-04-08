@@ -55,7 +55,6 @@ public class DetailActivity extends AppCompatActivity {
         etTitle = (EditText) findViewById(R.id.edit_et_title);
         etDesc = (EditText) findViewById(R.id.edit_et_desc);
         tvAddress = (TextView) findViewById(R.id.edit_tv_address);
-        buEditSave = (Button) findViewById(R.id.edit_bu_saveedit);
         commentList = (ListView) findViewById(R.id.comment_list);
 
         etTitle.setText(item.getTitle());
@@ -83,7 +82,7 @@ public class DetailActivity extends AppCompatActivity {
     public void toggleForm(){
         if(formEnabled) {
             getFromForm();
-            InternalStorage.setGeoCacheList(this, index, item);
+            InternalStorage.setGeoCacheItem(this, index, item);
             //saveItemToStorage();
             buEditSave.setText("Save");
         }else {

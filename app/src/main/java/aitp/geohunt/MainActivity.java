@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
     }
 
     public void saveList(){
-        InternalStorage.writeItems(this, list);
+        InternalStorage.writeGeocacheList(this, list);
     }
 
     public void setForDeletion(int displayListIndex){

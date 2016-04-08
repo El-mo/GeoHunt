@@ -2,11 +2,13 @@ package aitp.geohunt.Models;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class ObjectDetails implements Serializable {
     boolean favorite;
     float rating;
     String notes;
+    ArrayList<Comment> comments;
 
     public boolean isFavorite() {
         return favorite;
@@ -25,5 +27,13 @@ public class ObjectDetails implements Serializable {
     }
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(ArrayList<Comment> comments) {
+        this.comments = comments;
     }
 }
