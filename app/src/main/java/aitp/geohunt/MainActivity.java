@@ -30,6 +30,7 @@ import aitp.geohunt.Adapters.ListViewAdapter;
 import aitp.geohunt.Callbacks.AlertCallBack;
 import aitp.geohunt.DataLayer.InternalStorage;
 import aitp.geohunt.Helper.AlertHelper;
+import aitp.geohunt.Helper.LocationHelper;
 import aitp.geohunt.Models.Geocache;
 import aitp.geohunt.Models.SortComparator;
 
@@ -49,17 +50,20 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
     ArrayList<String> filterOptions = new ArrayList<>();
     ArrayList<String> sortOptions = new ArrayList<>();
 
-    @Override
+    LocationHelper currentLocation;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //load list of caches
         list = InternalStorage.readGeocacheList(this);
+        currentLocation = LocationHelper.getCurrentLocation((LocationManager) getSystemService(Context.LOCATION_SERVICE), this);
 
         //set SortOptions
         sortOptions.add("Date");
         sortOptions.add("Title");
         sortOptions.add("Type");
+        sortOptions.add("Distance");
         //set filterOptions
         filterOptions.add("None");
         filterOptions.add("Favorites");
@@ -282,26 +286,15 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
                         comp.setCompareToType();
                         Collections.sort(display, comp);
                         break;
-                    case "location":
-                        if(getCurrentLocation())
-                            calculateDistances();
-                            comp.setCompareToLocation();
-                            Collections.sort(display, comp);
+                    case "Distance":
+                        comp.setLocation(currentLocation);
+                        Collections.sort(display, comp);
                         break;
                 }
                 setUpList();
             }
         });
         builder.show();
-    }
-
-    private void calculateDistances() {
-        if(list.size() > 0) {
-            for (int i = 0; i < list.size(); i++) {
-                list.get(i).setDistanceTo(location.distanceTo(list.get(i).getLocation().getLocation()));
-            }
-        }
-
     }
 
     private boolean getCurrentLocation() {

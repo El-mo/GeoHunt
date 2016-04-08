@@ -1,11 +1,18 @@
 package aitp.geohunt.Helper;
 
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Address;
+import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Parcel;
+import android.support.v4.app.ActivityCompat;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -23,11 +30,10 @@ public class LocationHelper implements Serializable {
     }
 
     public Location getLocation() {
-        Parcel p = Parcel.obtain();
-        p.readByteArray(this.location);
-        Location location = Location.CREATOR.createFromParcel(p);
-        p.recycle();
-        return location;
+        Location targetLocation = new Location("");//provider name is unecessary
+        targetLocation.setLatitude(latitude);//your coords of course
+        targetLocation.setLongitude(longitude);
+        return targetLocation;
     }
 
     public void setLocation(Location location, Context context) {
@@ -72,5 +78,36 @@ public class LocationHelper implements Serializable {
             address =new String[] {"Cannot find location"};
         }
 
+    }
+
+    public static LocationHelper getCurrentLocation(LocationManager locationManager, Context context){
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // permission granted
+
+            String provider = locationManager.getBestProvider(new Criteria(), false);
+            locationManager.requestLocationUpdates(provider, 400, 1, (LocationListener) context);
+
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {            }
+            Location location = locationManager.getLastKnownLocation(provider);
+            // Check if last known location set
+            if (location != null) {
+                Toast.makeText(context, "Found stored current location!", Toast.LENGTH_LONG).show();
+                return new LocationHelper(location, context);
+            } else {
+                // if last location not already recorded, force location lookup
+                provider = locationManager.getBestProvider(new Criteria(), false);
+                locationManager.requestSingleUpdate(provider, (LocationListener) context, null);
+                location = locationManager.getLastKnownLocation(provider);
+                if (location != null) {
+                    Toast.makeText(context, "Location current location!", Toast.LENGTH_LONG).show();
+                    //return new LocationHelper(location, context);
+                } else {
+                    Toast.makeText(context, "Location Not Found", Toast.LENGTH_LONG).show();
+                    //return new LocationHelper(location, context);
+                }
+            }
+        }
+        //if it makes it here, error.
+        return null;
     }
 }
