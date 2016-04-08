@@ -53,6 +53,12 @@ public class Geocache implements Serializable {
     public void setLocation(Location location, Context context) {
         this.location = new LocationHelper(location, context);
     }
+    public void setLocation(float longitude, float latitude, Context context){
+        Location loc = new Location("");
+        loc.setLatitude(latitude);
+        loc.setLongitude(longitude);
+        this.setLocation(loc, context);
+    }
     public ArrayList<ImageHelper> getImages() {
         return images;
     }
@@ -66,12 +72,14 @@ public class Geocache implements Serializable {
     public void setLocation(LocationHelper location) {
         this.location = location;
     }
+
     public float getDistanceTo() {
         return distanceTo;
     }
     public void setDistanceTo(float distanceTo) {
         this.distanceTo = distanceTo;
     }
+
     public void setImages(ArrayList<ImageHelper> images) {
         this.images = images;
     }
