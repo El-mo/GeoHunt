@@ -27,7 +27,8 @@ public class SplashActivity extends AppCompatActivity {
     public void createData(){
         geocaches = new ArrayList<>();
         Geocache geocache1 = new Geocache();
-        geocache1.setTitle("Location 1");
+        geocache1.setTitle("Find me on Federal");
+        geocache1.setDescription("I've hidden one of my favorite little office toys around this location. Good luck!");
         geocache1.setType("Toy");
 
         CacheDetails details = new CacheDetails();
