@@ -101,7 +101,7 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
     public void foundIt(View view){
         CacheDetails details = this.item.getCacheDetails();
         if (!details.isFound())
-            details.setFavorite(true);
+            details.setFound(true);
         Toast.makeText(this, "Congrats!", Toast.LENGTH_LONG).show();
     }
 

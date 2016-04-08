@@ -220,6 +220,13 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
                 getSupportActionBar().setTitle("My Favorites");
                 break;
             case "My History: Found":
+                Log.d(MainActivity.DEBUGSTR, "Filter By User Log:");
+                for (Geocache item : this.list) {
+                    if (item.getCacheDetails().isFound())
+                        display.add(item);
+                }
+                //noinspection ConstantConditions
+                getSupportActionBar().setTitle("My History");
 
                 break;
             default:
