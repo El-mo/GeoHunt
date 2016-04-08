@@ -92,11 +92,26 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="See Submitted Images"
-        android:onClick="seePictures" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp" >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="See Submitted Images"
+            android:onClick="seePictures"
+            android:layout_marginRight="4dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="See Comments"
+            android:id="@+id/commentsbutton"
+            android:onClick="seeComments" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -107,7 +122,7 @@
         android:textSize="16sp" />
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom">
@@ -115,9 +130,10 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="See Comments"
-            android:id="@+id/commentsbutton"
-            android:onClick="seeComments" />
+            android:text="I Found It!"
+            android:id="@+id/bu_found_it"
+            android:layout_gravity="bottom"
+            android:onClick="foundIt" />
     </LinearLayout>
 
 </LinearLayout>

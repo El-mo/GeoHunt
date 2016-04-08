@@ -68,13 +68,9 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
             tvAddress.setText("Address: Location not added");
         else{
             if(locationHelper.getAddress().length>1){
-
+                String address = "Location: " + locationHelper.getAddress()[1];
+                tvAddress.setText(address);
             }
-            String address = "City: \n";
-            for(String addressLine : locationHelper.getAddress()){
-                address += addressLine + "\n";
-            }
-            tvAddress.setText(address);
         }
 
     }
@@ -100,6 +96,13 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
         Intent i = new Intent(DetailActivity.this, ImageDisplayActivity.class);
         i.putExtra(ImageHelper.IMAGEHELPER, item.getImages());
         startActivity(i);
+    }
+
+    public void foundIt(View view){
+        CacheDetails details = this.item.getCacheDetails();
+        if (!details.isFound())
+            details.setFavorite(true);
+        Toast.makeText(this, "Congrats!", Toast.LENGTH_LONG);
     }
 
     public void takePictureEditForm(View view){
