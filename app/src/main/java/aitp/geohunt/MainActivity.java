@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -196,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
 
     private void filterBy(String filterStr) {
         //TODO: Set Filter Logic
+        list = InternalStorage.readGeocacheList(this);
         this.display = new ArrayList<>();
         switch (filterStr) {
             case "None":
@@ -204,7 +206,9 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
                 getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
                 break;
             case "Favorites":
+                Log.d(MainActivity.DEBUGSTR, "Filter By Favorites:");
                 for (Geocache item : this.list) {
+                    Log.d(MainActivity.DEBUGSTR, item.getTitle() + " favorite: " +item.isFavorite());
                     if (item.isFavorite())
                         display.add(item);
                 }
