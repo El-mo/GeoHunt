@@ -4,136 +4,148 @@
     android:layout_height="match_parent"
     android:padding="15dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="GeoCache Name" />
-
-        <EditText
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/detail_et_title"
-            android:editable="true"
-            android:enabled="false" />
-    </LinearLayout>
+            android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Description" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="GeoCache Name" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/detail_et_desc"
-            android:editable="true"
-            android:enabled="false" />
-    </LinearLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/detail_et_title"
+                    android:editable="true"
+                    android:enabled="false" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp" >
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Type" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Description" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/detail_et_Type"
-            android:editable="true"
-            android:enabled="false" />
-    </LinearLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/detail_et_desc"
+                    android:editable="true"
+                    android:enabled="false" />
+            </LinearLayout>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add To Favorites"
-        android:id="@+id/checkBox_Fav"
-        android:checked="false" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="2dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Type" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Submit Picture of Cache"
-            android:layout_gravity="center_vertical" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/detail_et_Type"
+                    android:editable="true"
+                    android:enabled="false" />
+            </LinearLayout>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_camera"
-            android:onClick="takePictureEditForm" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add To Favorites"
+                android:id="@+id/checkBox_Fav"
+                android:checked="false" />
 
-    </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="2dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Submit Picture of Cache"
+                    android:layout_gravity="center_vertical" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="See Submitted Images"
-            android:onClick="seePictures"
-            android:layout_marginRight="4dp" />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_camera"
+                    android:onClick="takePictureEditForm" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="See Comments"
-            android:id="@+id/commentsbutton"
-            android:onClick="seeComments" />
-    </LinearLayout>
+            </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Address"
-        android:id="@+id/edit_tv_address"
-        android:textSize="16sp" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp" >
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="bottom">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="See Submitted Images"
+                    android:onClick="seePictures"
+                    android:layout_marginRight="4dp" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="I Found It!"
-            android:id="@+id/bu_found_it"
-            android:layout_gravity="bottom"
-            android:onClick="foundIt" />
-    </LinearLayout>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="See Comments"
+                    android:id="@+id/commentsbutton"
+                    android:onClick="seeComments" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Address"
+                android:id="@+id/edit_tv_address"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="I Found It!"
+                    android:id="@+id/bu_found_it"
+                    android:layout_gravity="bottom"
+                    android:onClick="foundIt" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
