@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -40,7 +41,9 @@ public class ViewLocationsActivity extends FragmentActivity
 
         if(!list.isEmpty()){
             Geocache item = list.get(0);
-            map.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(item.getLatitude(), item.getLongitude())));
+            map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(item.getLatitude(), item.getLongitude())));
+            CameraUpdate  zoom = CameraUpdateFactory.zoomTo(11);
+            map.animateCamera(zoom);
         }
     }
 
