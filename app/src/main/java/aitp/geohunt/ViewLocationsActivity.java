@@ -12,6 +12,7 @@ public class ViewLocationsActivity extends AppCompatActivity {
     }
 
     /*
+    <string name="DEVELOPER_KEY">AIzaSyAKSMbskTg2D9ZCJQb5pbvnoosGYq9uiiI</string>
 
     public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
         @Override
