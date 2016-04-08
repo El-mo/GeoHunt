@@ -12,9 +12,9 @@ import aitp.geohunt.Helper.ImageHelper;
 import aitp.geohunt.Helper.LocationHelper;
 
 
-public class SerialObject implements Serializable {
+public class Geocache implements Serializable {
 
-    String title = "";
+    String title = "";          //name
     String description = "";
     String type = "";
     Date date = new Date();
@@ -23,7 +23,7 @@ public class SerialObject implements Serializable {
 
     ArrayList<ImageHelper> images = new ArrayList<>();
 
-    public SerialObject(){}
+    public Geocache(){}
 
     public String getTitle() {
         return title;
@@ -77,12 +77,12 @@ public class SerialObject implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof SerialObject))
+        if (!(obj instanceof Geocache))
             return false;
         if (obj == this)
             return true;
 
-        SerialObject otherObject = (SerialObject) obj;
+        Geocache otherObject = (Geocache) obj;
         return (title.equals(otherObject.getTitle()) && (description.equals(otherObject.getDescription())));
     }
 

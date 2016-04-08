@@ -10,7 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import aitp.geohunt.Models.SerialObject;
+import aitp.geohunt.Models.Geocache;
 
 
 public class InternalStorage {
@@ -18,27 +18,27 @@ public class InternalStorage {
 
     public InternalStorage() {}
 
-    public static void appendItem(Context context, SerialObject item){
-        ArrayList<SerialObject> arrayList = readItems(context);
+    public static void appendItem(Context context, Geocache item){
+        ArrayList<Geocache> arrayList = readItems(context);
         if(!arrayList.contains(item)){
             arrayList.add(item);
             writeItems(context, arrayList);
         }
     }
 
-    public static void writeItems(Context context, ArrayList<SerialObject> arrayList) {
+    public static void writeItems(Context context, ArrayList<Geocache> arrayList) {
         InternalStorage.writeObject(context, LISTKEY, arrayList);
     }
 
-    public static ArrayList<SerialObject> readItems(Context context){
+    public static ArrayList<Geocache> readItems(Context context){
         return readList(context, LISTKEY);
     }
-    public static SerialObject getItemAtIndex(Context context, int index){
+    public static Geocache getItemAtIndex(Context context, int index){
         return readItems(context).get(index);
     }
 
-    public static void setItem(Context context, int index, SerialObject item){
-        ArrayList<SerialObject> list = readItems(context);
+    public static void setItem(Context context, int index, Geocache item){
+        ArrayList<Geocache> list = readItems(context);
         list.set(index, item);
         writeItems(context, list);
     }
@@ -67,10 +67,10 @@ public class InternalStorage {
         }
     }
 
-    public static ArrayList<SerialObject> readList(Context context, String key){
-        ArrayList<SerialObject> arrayList;
+    public static ArrayList<Geocache> readList(Context context, String key){
+        ArrayList<Geocache> arrayList;
 
-        arrayList = (ArrayList<SerialObject>) InternalStorage.readObject(context, key);
+        arrayList = (ArrayList<Geocache>) InternalStorage.readObject(context, key);
         if(arrayList==null)
             arrayList = new ArrayList<>();
 

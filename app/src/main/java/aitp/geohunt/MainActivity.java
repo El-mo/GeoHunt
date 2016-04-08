@@ -29,7 +29,7 @@ import aitp.geohunt.Adapters.ListViewAdapter;
 import aitp.geohunt.Callbacks.AlertCallBack;
 import aitp.geohunt.DataLayer.InternalStorage;
 import aitp.geohunt.Helper.AlertHelper;
-import aitp.geohunt.Models.SerialObject;
+import aitp.geohunt.Models.Geocache;
 import aitp.geohunt.Models.SortComparator;
 
 
@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
     public static final String DEBUGSTR = "DBLog";
     public static final String LISTINDEX = "INDEXOFLIST";
 
-    ArrayList<SerialObject> list;
-    ArrayList<SerialObject> display;
+    ArrayList<Geocache> list;
+    ArrayList<Geocache> display;
     int deleteListIndex = -1;
 
     LocationManager locationManager;
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
     }
 
     private void retrieveUserData() {
-        //list = (ArrayList<SerialObject>) InternalStorage.readList(this, InternalStorage.LISTKEY);
+        //list = (ArrayList<Geocache>) InternalStorage.readList(this, InternalStorage.LISTKEY);
         list = InternalStorage.readItems(this);
         display = list;
         if(list.size() == 0)
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
     }
 
     public void setForDeletion(int displayListIndex){
-        SerialObject item = display.get(displayListIndex);
+        Geocache item = display.get(displayListIndex);
         deleteListIndex = list.indexOf(item);
     }
 
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
 
         //TODO Add filter by options
         /*
-            for(SerialObject item: list){
+            for(Geocache item: list){
                 filterOptions.add(item.getType());
             }
          */
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
                 getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
                 break;
             /*case "Favorites":
-                for (SerialObject item : this.list) {
+                for (Geocache item : this.list) {
                     if (item.isFavorite())
                         display.add(item);
                 }
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
                 break;*/
             default:
                 /*
-                for (SerialObject item : this.list) {
+                for (Geocache item : this.list) {
                     if (item.getType().equals(filterStr))
                         display.add(item);
                 }
@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
         }
         else{
             this.display = new ArrayList<>();
-            for(SerialObject item : this.list){
+            for(Geocache item : this.list){
                 //TODO Update with search properties
                 if(item.getTitle().toLowerCase().contains(query.toLowerCase()) || item.getDescription().toLowerCase().contains(query.toLowerCase())){
                     display.add(item);

@@ -10,20 +10,20 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import aitp.geohunt.Models.SerialObject;
+import aitp.geohunt.Models.Geocache;
 import aitp.geohunt.R;
 
 
-public class ListViewAdapter extends ArrayAdapter<SerialObject>{
+public class ListViewAdapter extends ArrayAdapter<Geocache>{
 
-    public ListViewAdapter(Context context, ArrayList<SerialObject> objects) {
+    public ListViewAdapter(Context context, ArrayList<Geocache> objects) {
         super(context, 0, objects);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        SerialObject item = getItem(position);
+        Geocache item = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.listview_row, parent, false);

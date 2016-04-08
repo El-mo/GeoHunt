@@ -24,12 +24,12 @@ import java.util.ArrayList;
 
 import aitp.geohunt.DataLayer.InternalStorage;
 import aitp.geohunt.Helper.ImageHelper;
-import aitp.geohunt.Models.SerialObject;
+import aitp.geohunt.Models.Geocache;
 
 
 public class AddActivity extends AppCompatActivity implements LocationListener {
 
-    SerialObject itemToAdd;
+    Geocache itemToAdd;
     ImageHelper imageFromCam;
 
     LocationManager locationManager;
@@ -39,7 +39,7 @@ public class AddActivity extends AppCompatActivity implements LocationListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-        itemToAdd = new SerialObject();
+        itemToAdd = new Geocache();
     }
 
     //FORM DATA
@@ -50,7 +50,7 @@ public class AddActivity extends AppCompatActivity implements LocationListener {
     }
 
     public void saveItemToStorage() {
-        ArrayList<SerialObject> itemList = (ArrayList<SerialObject>) InternalStorage.readList(this, InternalStorage.LISTKEY);
+        ArrayList<Geocache> itemList = (ArrayList<Geocache>) InternalStorage.readList(this, InternalStorage.LISTKEY);
         itemList.add(itemToAdd);
         InternalStorage.writeObject(this, InternalStorage.LISTKEY, itemList);
         //InternalStorage.appendItem(this, itemToAdd);

@@ -3,7 +3,7 @@ package aitp.geohunt.Models;
 import java.util.Comparator;
 
 
-public class SortComparator implements Comparator<SerialObject> {
+public class SortComparator implements Comparator<Geocache> {
     String arg;
     public SortComparator(String arg){
         this.arg = arg;
@@ -14,7 +14,7 @@ public class SortComparator implements Comparator<SerialObject> {
 
     //TODO Add Sort Options to Comparator
     @Override
-    public int compare(SerialObject event, SerialObject t1) {
+    public int compare(Geocache event, Geocache t1) {
         switch (arg){
             case "date" : return compareDate(event, t1);
             case "title" : return compareTitle(event, t1);
@@ -24,16 +24,16 @@ public class SortComparator implements Comparator<SerialObject> {
         return 0;
     }
 
-    private int compareToLocation(SerialObject event, SerialObject t1) {
+    private int compareToLocation(Geocache event, Geocache t1) {
         return Float.compare(event.getDistanceTo(), t1.getDistanceTo());
     }
-    public int compareDate(SerialObject e1, SerialObject e2){
+    public int compareDate(Geocache e1, Geocache e2){
         return e1.getDate().compareTo(e2.getDate());
     }
-    private int compareTitle(SerialObject event, SerialObject t1) {
+    private int compareTitle(Geocache event, Geocache t1) {
         return event.getTitle().compareTo(t1.getTitle());
     }
-    public int compareType(SerialObject e1, SerialObject e2){
+    public int compareType(Geocache e1, Geocache e2){
         return e1.getType().compareTo(e2.getType());
     }
 

@@ -20,13 +20,13 @@ import java.io.IOException;
 import aitp.geohunt.DataLayer.InternalStorage;
 import aitp.geohunt.Helper.ImageHelper;
 import aitp.geohunt.Helper.LocationHelper;
-import aitp.geohunt.Models.SerialObject;
+import aitp.geohunt.Models.Geocache;
 
 
 public class DetailActivity extends AppCompatActivity {
 
     int index;
-    SerialObject item;
+    Geocache item;
     EditText etTitle, etDesc;
     TextView tvAddress;
     Button buEditSave;
