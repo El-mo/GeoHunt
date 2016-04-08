@@ -29,7 +29,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ImageDisplayActivity" />
         <activity android:name=".DetailActivity" />
-        <activity android:name=".CommentDisplayActivity"></activity>
+        <activity android:name=".CommentDisplayActivity" />
+        <activity android:name=".ViewLocationsActivity"></activity>
     </application>
 
 </manifest>
