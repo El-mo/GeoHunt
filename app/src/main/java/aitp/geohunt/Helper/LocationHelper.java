@@ -57,7 +57,7 @@ public class LocationHelper implements Serializable {
         try {
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
 
-            if(addresses != null) {
+            if(addresses != null && addresses.size() > 0) {
                 Address returnedAddress = addresses.get(0);
                 address = new String[returnedAddress.getMaxAddressLineIndex()];
                 for(int i=0; i<returnedAddress.getMaxAddressLineIndex(); i++) {

@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
         //set filterOptions
         filterOptions.add("None");
         filterOptions.add("Favorites");
-        //filterOptions.add("Type");
+        filterOptions.add("My History: Found");
         for(Geocache item : list){
             if(!filterOptions.contains(item.getType()))
                 filterOptions.add(item.getType());
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                new AlertHelper(MainActivity.this, MainActivity.this).makeAlertBoolean("Delete " + display.get(position).getTitle() + "?");
+                new AlertHelper(MainActivity.this, MainActivity.this).makeAlertBoolean("Delete " + display.get(position).getTitle() + " from list?");
                 setForDeletion(position);
                 return true;
             }
@@ -199,7 +199,6 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
     }
 
     private void filterBy(String filterStr) {
-        //TODO: Set Filter Logic
         list = InternalStorage.readGeocacheList(this);
         this.display = new ArrayList<>();
         switch (filterStr) {
@@ -218,12 +217,15 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
                 //noinspection ConstantConditions
                 getSupportActionBar().setTitle("My Favorites");
                 break;
-            default:
+            case "My History: Found":
 
+                break;
+            default:
                 for (Geocache item : this.list) {
                     if (item.getType().equals(filterStr))
                         display.add(item);
                 }
+                //noinspection ConstantConditions
                 getSupportActionBar().setTitle(filterStr);
                 break;
         }

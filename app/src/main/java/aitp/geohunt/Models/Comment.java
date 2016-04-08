@@ -15,6 +15,9 @@ public class Comment implements Serializable{
         this.comment = comment;
     }
 
+    public Comment() {
+    }
+
     public String getDateString(){
         return DateFormat.getDateTimeInstance().format(commentDate.getTime());
     }
