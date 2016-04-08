@@ -45,6 +45,6 @@ public class ImageDisplayActivity extends AppCompatActivity {
         });
 
         //noinspection ConstantConditions
-        getSupportActionBar().setTitle("Images");
+        getSupportActionBar().setTitle("Pictures of GeoCache");
     }
 }

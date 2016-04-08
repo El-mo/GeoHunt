@@ -172,6 +172,9 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
             case R.id.sort:
                 showSortDialog();
                 return true;
+            case R.id.launchmap:
+                //TODO add map
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

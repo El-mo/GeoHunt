@@ -102,7 +102,7 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
         CacheDetails details = this.item.getCacheDetails();
         if (!details.isFound())
             details.setFavorite(true);
-        Toast.makeText(this, "Congrats!", Toast.LENGTH_LONG);
+        Toast.makeText(this, "Congrats!", Toast.LENGTH_LONG).show();
     }
 
     public void takePictureEditForm(View view){
