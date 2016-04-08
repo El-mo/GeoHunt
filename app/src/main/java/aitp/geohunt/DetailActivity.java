@@ -1,6 +1,8 @@
 package aitp.geohunt;
 
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,15 +22,17 @@ import java.io.IOException;
 import aitp.geohunt.DataLayer.InternalStorage;
 import aitp.geohunt.Helper.ImageHelper;
 import aitp.geohunt.Helper.LocationHelper;
+import aitp.geohunt.Models.CacheDetails;
 import aitp.geohunt.Models.Geocache;
 
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements LocationListener {
 
     int index;
     Geocache item;
     EditText etTitle, etDesc;
     TextView tvAddress;
+    CheckBox cbFav;
     ImageHelper imageFromCam;
 
     @Override
@@ -50,10 +55,11 @@ public class DetailActivity extends AppCompatActivity {
         etTitle = (EditText) findViewById(R.id.edit_et_title);
         etDesc = (EditText) findViewById(R.id.edit_et_desc);
         tvAddress = (TextView) findViewById(R.id.edit_tv_address);
-
+        cbFav = (CheckBox) findViewById(R.id.checkBox_Fav);
 
         etTitle.setText(item.getTitle());
         etDesc.setText(item.getDescription());
+        cbFav.setChecked(item.getCacheDetails().isFavorite());
 
         LocationHelper locationHelper = item.getLocation();
         if(locationHelper == null)
@@ -69,9 +75,12 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     public void getFromForm(){
-        //TODO Get data from editable views
+
         item.setTitle(etTitle.getText().toString());
         item.setDescription(etDesc.getText().toString());
+        CacheDetails details = item.getCacheDetails();
+        details.setFavorite(cbFav.isChecked());
+        item.setCacheDetails(details);
     }
 
 
@@ -144,13 +153,43 @@ public class DetailActivity extends AppCompatActivity {
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_TEXT,
-                        "Check out " + item.getTitle() + " at AITP NCC!\n" +
-                                "Follow AITP on twitter! https://twitter.com/AITP2013");
+                        "I'm looking for " + this.item.getTitle() + " with GeoHunt!!\n" +
+                                "It's somewhere in " + this.item.getLocation().getAddress()[1]);
                 sendIntent.setType("text/plain");
                 startActivity(Intent.createChooser(sendIntent, "Share Event"));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+
+
+    //LIFECYCLE
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //ArrayList<>
+    }
+
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 }

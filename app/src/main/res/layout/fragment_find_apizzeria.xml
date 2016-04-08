@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.pmq.pizzatv.FindAPizzeriaFragment">
+    <LinearLayout
+        android:id="@+id/textViewNotBlank"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5">
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:context=".MapsActivity" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/textViewBlank"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5">
+        <ScrollView
+            android:id="@+id/results_scrollview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:fillViewport="true">
+            <TextView
+                android:id="@+id/textView1"
+                android:text="This is the bottom half!"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="true"
+                android:enabled="true" />
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

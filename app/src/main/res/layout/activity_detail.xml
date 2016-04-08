@@ -44,6 +44,13 @@
             android:enabled="false" />
     </LinearLayout>
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add To Favorites"
+        android:id="@+id/checkBox_Fav"
+        android:checked="false" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
