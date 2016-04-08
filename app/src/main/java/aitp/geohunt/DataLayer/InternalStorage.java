@@ -19,7 +19,7 @@ public class InternalStorage {
     public InternalStorage() {}
 
     public static void appendItem(Context context, Geocache item){
-        ArrayList<Geocache> arrayList = readItems(context);
+        ArrayList<Geocache> arrayList = readGeocacheList(context);
         if(!arrayList.contains(item)){
             arrayList.add(item);
             writeItems(context, arrayList);
@@ -30,15 +30,15 @@ public class InternalStorage {
         InternalStorage.writeObject(context, LISTKEY, arrayList);
     }
 
-    public static ArrayList<Geocache> readItems(Context context){
+    public static ArrayList<Geocache> readGeocacheList(Context context){
         return readList(context, LISTKEY);
     }
-    public static Geocache getItemAtIndex(Context context, int index){
-        return readItems(context).get(index);
+    public static Geocache getGeocacheAtIndex(Context context, int index){
+        return readGeocacheList(context).get(index);
     }
 
-    public static void setItem(Context context, int index, Geocache item){
-        ArrayList<Geocache> list = readItems(context);
+    public static void setGeoCacheList(Context context, int index, Geocache item){
+        ArrayList<Geocache> list = readGeocacheList(context);
         list.set(index, item);
         writeItems(context, list);
     }

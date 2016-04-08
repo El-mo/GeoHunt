@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class DetailActivity extends AppCompatActivity {
     Button buEditSave;
     boolean formEnabled = false;
     ImageHelper imageFromCam;
+    ListView commentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class DetailActivity extends AppCompatActivity {
         index = getIntent().getIntExtra(MainActivity.LISTINDEX, -1);
         if(index != -1){
             //getItemFromStorage();
-            item = InternalStorage.getItemAtIndex(this, index);
+            item = InternalStorage.getGeocacheAtIndex(this, index);
             fillForm();
         }
         else
@@ -54,6 +56,7 @@ public class DetailActivity extends AppCompatActivity {
         etDesc = (EditText) findViewById(R.id.edit_et_desc);
         tvAddress = (TextView) findViewById(R.id.edit_tv_address);
         buEditSave = (Button) findViewById(R.id.edit_bu_saveedit);
+        commentList = (ListView) findViewById(R.id.comment_list);
 
         etTitle.setText(item.getTitle());
         etDesc.setText(item.getDescription());
@@ -68,6 +71,7 @@ public class DetailActivity extends AppCompatActivity {
             }
             tvAddress.setText(address);
         }
+
     }
 
     public void getFromForm(){
@@ -79,7 +83,7 @@ public class DetailActivity extends AppCompatActivity {
     public void toggleForm(){
         if(formEnabled) {
             getFromForm();
-            InternalStorage.setItem(this, index, item);
+            InternalStorage.setGeoCacheList(this, index, item);
             //saveItemToStorage();
             buEditSave.setText("Save");
         }else {

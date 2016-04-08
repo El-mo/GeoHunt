@@ -66,11 +66,8 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
     }
 
     private void retrieveUserData() {
-        //list = (ArrayList<Geocache>) InternalStorage.readList(this, InternalStorage.LISTKEY);
-        list = InternalStorage.readItems(this);
+        list = InternalStorage.readGeocacheList(this);
         display = list;
-        if(list.size() == 0)
-            new AlertHelper(this, this).makeAlertBoolean("There are no items yet. Would you like to add one?");
     }
 
     //LIST MANAGEMENT
@@ -121,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
         else if(title.contains("Delete") && !response){
             deleteListIndex = -1;
         }
-        else if(title.contains("There are no items yet") && response) startAddActivity();
     }
 
     //START ACTIVITIES
@@ -132,10 +128,7 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
         startActivity(i);
     }
 
-    public void startAddActivity(){
-        Intent i = new Intent(MainActivity.this, AddActivity.class);
-        startActivity(i);
-    }
+
 
     //MENU FUNCTIONS
 
@@ -170,9 +163,6 @@ public class MainActivity extends AppCompatActivity implements AlertCallBack, Lo
                 return true;
             case R.id.sort:
                 showSortDialog();
-                return true;
-            case R.id.add_button:
-                startAddActivity();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -5,13 +5,24 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.util.ArrayList;
+
+import aitp.geohunt.DataLayer.InternalStorage;
+import aitp.geohunt.Models.Geocache;
+
 public class SplashActivity extends AppCompatActivity {
     private final int SPLASH_TIME = 2000;
+    ArrayList<Geocache> geocaches;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         splash();
+    }
+
+    public void createData(){
+        geocaches = InternalStorage.readGeocacheList(this);
     }
 
     public void splash(){
@@ -25,6 +36,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, SPLASH_TIME);
     }
+
     public void endSplash(){
         Intent i = new Intent(SplashActivity.this, MainActivity.class);
         startActivity(i);
