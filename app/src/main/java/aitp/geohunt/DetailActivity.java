@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import aitp.geohunt.DataLayer.InternalStorage;
 import aitp.geohunt.Helper.ImageHelper;
@@ -30,7 +31,7 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
 
     int index;
     Geocache item;
-    EditText etTitle, etDesc;
+    EditText etTitle, etDesc, etType;
     TextView tvAddress;
     CheckBox cbFav;
     ImageHelper imageFromCam;
@@ -41,7 +42,6 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
         setContentView(R.layout.activity_detail);
         index = getIntent().getIntExtra(MainActivity.LISTINDEX, -1);
         if(index != -1){
-            //getItemFromStorage();
             item = InternalStorage.getGeocacheAtIndex(this, index);
             fillForm();
         }
@@ -52,20 +52,25 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
     // FORM OPERATIONS
     public void fillForm(){
         //TODO fill form logic
-        etTitle = (EditText) findViewById(R.id.edit_et_title);
-        etDesc = (EditText) findViewById(R.id.edit_et_desc);
+        etTitle = (EditText) findViewById(R.id.detail_et_title);
+        etDesc = (EditText) findViewById(R.id.detail_et_desc);
+        etType = (EditText) findViewById(R.id.detail_et_Type);
         tvAddress = (TextView) findViewById(R.id.edit_tv_address);
         cbFav = (CheckBox) findViewById(R.id.checkBox_Fav);
 
         etTitle.setText(item.getTitle());
         etDesc.setText(item.getDescription());
+        etType.setText(item.getType());
         cbFav.setChecked(item.getCacheDetails().isFavorite());
 
         LocationHelper locationHelper = item.getLocation();
         if(locationHelper == null)
             tvAddress.setText("Address: Location not added");
         else{
-            String address = "Address: \n";
+            if(locationHelper.getAddress().length>1){
+
+            }
+            String address = "City: \n";
             for(String addressLine : locationHelper.getAddress()){
                 address += addressLine + "\n";
             }
@@ -165,11 +170,14 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
 
 
 
-    //LIFECYCLE
+    //LIFECYCLE (SAVE)
     @Override
     protected void onStop() {
         super.onStop();
-        //ArrayList<>
+        ArrayList<Geocache> geocaches = InternalStorage.readGeocacheList(this);
+        getFromForm();
+        geocaches.set(index, this.item);
+        InternalStorage.writeGeocacheList(this, geocaches);
     }
 
 
