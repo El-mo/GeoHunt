@@ -4,11 +4,14 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 import aitp.geohunt.DataLayer.InternalStorage;
 import aitp.geohunt.Models.Geocache;
@@ -27,10 +30,18 @@ public class ViewLocationsActivity extends FragmentActivity
 
     @Override
     public void onMapReady(GoogleMap map) {
-        for(Geocache item : InternalStorage.readGeocacheList(this))
-        map.addMarker(new MarkerOptions()
-                .position(new LatLng(item.getLatitude(), item.getLongitude()))
-                .title(item.getTitle()));
+        ArrayList<Geocache> list = InternalStorage.readGeocacheList(this);
+
+        for(Geocache item : list){
+            map.addMarker(new MarkerOptions()
+                    .position(new LatLng(item.getLatitude(), item.getLongitude()))
+                    .title(item.getTitle()));
+        }
+
+        if(!list.isEmpty()){
+            Geocache item = list.get(0);
+            map.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(item.getLatitude(), item.getLongitude())));
+        }
     }
 
     /*
