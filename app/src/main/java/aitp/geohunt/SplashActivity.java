@@ -18,7 +18,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        createData();
+        if(InternalStorage.readGeocacheList(this).isEmpty())
+            createData();
         splash();
     }
 
@@ -43,9 +44,6 @@ public class SplashActivity extends AppCompatActivity {
         Geocache geocache6 = new Geocache();
         geocache6.setTitle("Location 6");
         geocaches.add(geocache6);
-
-
-
 
         InternalStorage.writeGeocacheList(this, geocaches);
     }
